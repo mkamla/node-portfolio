@@ -1,0 +1,30 @@
+<div class="{{page.title}} container">
+	<div class="mod-6 mod">
+		<ul class="log-entries">
+			{{#page.log.Items}}
+				<li>
+					<a href="/log/{{this.url}}">				
+						<h2 class="title">{{this.title}}</h2>
+						<div class="meta">
+							{{#if this.lastModifiedTime}}
+							<span class="post-date modified">Updated: {{this.lastModifiedTime}}</span>
+							{{else}}
+							<span class="post-date created">{{this.createdTime}}</span>
+							{{/if}}
+						</div>
+						<p class="preview-text">{{{this.previewText}}}</p>
+					</a>
+					{{#if this.tags}}
+					<ul class="tags">
+						{{#each tags}}
+						<li>
+							<a href="/log/type/{{this}}">{{this}}</a>
+						</li>
+						{{/each}}
+					</ul>
+					{{/if}}
+				</li>
+			{{/page.log.Items}}
+		</ul>
+	</div>
+</div>

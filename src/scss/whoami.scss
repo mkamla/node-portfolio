@@ -1,0 +1,45 @@
+ul.bio-metric-stats {
+	width:100%;
+	margin:0;
+	padding:0;
+	list-style:none;
+	display:block;
+	overflow:hidden;
+	a {
+		color:$purple;
+	}
+	li {
+		width:100%;
+		margin:0;
+		padding:12px;
+		color:$text;
+		font-weight:300;
+		display:block;
+		overflow:hidden;
+		span.label {
+			padding:0 6px 0 0;
+			color:saturate($secondaryText,10%);
+		}
+	}
+	ul {
+		margin:0;
+		padding:0 0 0 12px;
+		li > span {
+			padding:2px 0;
+			color:$secondaryText;
+			display:block;
+		}
+
+		li span.title {
+			color:$cyan;
+		}
+
+		li span.date {
+			font-size:75%;
+		}
+
+		li span.date.end:before {
+			content:" - ";
+		}
+	}
+}

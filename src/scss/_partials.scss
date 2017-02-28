@@ -1,0 +1,103 @@
+//--START MAIN COLORS
+$primary:#ff005a;//ff0054
+$secondary:#ffd200;
+$crazy:#7F1343;
+$slate:#2d3952;
+$lightGray: lighten(desaturate($slate,40%),50%);
+$darkGray: darken(desaturate($slate,40%),30%);
+// $slateN:#42557d;
+
+//dracula colors
+// $background:#282a36;
+// $background:#212335;
+$background:#1b182d;
+$panel:#292944;
+$current:#44475a;
+$selection:#44475a;
+$foreground:#f8f8f2;
+$comment:#6272a4;
+$cyan:#8be9fd;
+$green:#50fa7b;
+$orange:#ffb86c;
+$pink:#ff79c6;
+$purple:#bd93f9;
+$red:#ff5555;
+$yellow:#f1fa8c;
+
+$text: lighten(desaturate($cyan,50%),5%);
+$secondaryText: lighten($background,35%);
+
+//--START SOCIAL COLORS--
+$twitter:#0099EB;
+$facebook:#3a5b9b;
+$googleplus:#dc4b3e;
+$instagram:#3f729b;
+//--END SOCIAL COLORS--
+
+$divider:darken($background,2%);
+
+$sansSerif:"Helvetica Neue",Helvetica,Arial,sans-serif;
+
+$roboto:'Roboto',$sansSerif;
+$robotoMono:'Roboto Mono',Menlo,Courier,monospace;
+$flamaLight:'Flama Light',$roboto;
+$flamaMedium:'Flama Medium',$roboto;
+
+$shadow1: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+
+//--START MIXINS--
+
+@mixin vertGradient($colorStart,$colorEnd){
+	background-color: $colorStart;
+	background: -moz-linear-gradient(top,$colorStart 10%,$colorEnd 100%);
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(10%,$colorStart),color-stop(100%,$colorEnd));
+	background: -webkit-linear-gradient(top,$colorStart 10%,$colorEnd 100%);
+	background: -o-linear-gradient(top,$colorStart 10%,$colorEnd 100%);
+	background: -ms-linear-gradient(top,$colorStart 10%,$colorEnd 100%);
+	background: linear-gradient(to bottom,$colorStart 10%,$colorEnd 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$colorStart,endColorstr=$colorEnd,GradientType=0);
+}
+
+@mixin horizGradient($colorStart,$colorEnd){
+  background-color: $colorStart;
+  background-image: -webkit-gradient(linear, left top, right top, from($colorStart), to($colorEnd));
+  background-image: -webkit-linear-gradient(left, $colorStart, $colorEnd);
+  background-image: -moz-linear-gradient(left, $colorStart, $colorEnd);
+  background-image: -o-linear-gradient(left, $colorStart, $colorEnd);
+  background-image: linear-gradient(to right, $colorStart, $colorEnd);
+}
+
+@mixin angleGradient($angle,$colorStart,$colorEnd){
+  background-color: $colorStart;
+  background-image: -webkit-gradient(linear, $angle, from($colorStart), to($colorEnd));
+  background-image: -webkit-linear-gradient($angle, $colorStart, $colorEnd);
+  background-image: -moz-linear-gradient($angle, $colorStart, $colorEnd);
+  background-image: -o-linear-gradient($angle, $colorStart, $colorEnd);
+  background-image: linear-gradient($angle, $colorStart, $colorEnd);
+}
+
+@mixin transition($properties...){
+	-webkit-transition:$properties;
+	-moz-transition:$properties;
+	-o-transition:$properties;
+	-ms-transition:$properties;
+	transition:$properties;
+}
+
+@mixin transform($properties...){
+	-webkit-transform:$properties;
+	-moz-transform:$properties;
+	-o-transform:$properties;
+	-ms-transform:$properties;
+	transform:$properties;
+}
+
+@mixin filter($properties...){
+	-webkit-filter:$properties;
+	-moz-filter:$properties;
+	-o-filter:$properties;
+	-ms-filter:$properties;
+	filter:$properties;
+}
+
+//--END MIXINS--

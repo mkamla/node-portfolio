@@ -1,0 +1,93 @@
+//github activity module
+#git-activity div.week {
+	width:1.87%;
+	padding:2px;
+	float:left;
+	display:block;
+	overflow:hidden;
+}
+
+#git-activity span {
+	width:100%;
+	margin:0 0 4px 0;
+	padding:100% 0 0 0;
+	background-color:rgba(0,0,0,0.1);
+	// border:solid 1px $background;
+	border-radius:50%;
+	display:block;
+	overflow:hidden;
+}
+
+#git-activity div.legend > span {
+	// margin:0;
+	background-color:transparent;
+	text-align:center;
+	position:relative;
+	display:block;
+	overflow:hidden;
+}
+
+#git-activity div.legend span span.label {
+	width:100%;
+	height:100%;
+	margin:-25% 0 0 0;
+	padding:0;
+	background-color:transparent;
+	color:$secondaryText;
+	font-size:12px;
+	line-height:1;
+	top:50%;
+	position:absolute;
+	display:block;
+	overflow:hidden;
+}
+
+#git-activity span[data-commits="1"] {
+	background-color:rgba($cyan,0.25);
+}
+
+#git-activity span[data-commits="2"] {
+	background-color:rgba($cyan,0.5);
+}
+
+#git-activity span[data-commits="3"] {
+	background-color:rgba($cyan,0.7);
+}
+
+#git-activity span[data-commits="4"] {
+	background-color:rgba($cyan,1);
+}
+
+@media screen and (max-width:799px){
+
+	#git-activity {
+		display:flex;
+		flex-direction:column-reverse;
+	}
+
+	#git-activity div.week {
+		width:100%;
+		float:none;
+	}
+
+	#git-activity h2 {
+		order:2;
+	}
+
+	#git-activity div.legend {
+		order:1;
+	}
+
+	#git-activity div.week {
+		display:flex;
+		flex-direction:row;
+		flex-wrap:nowrap;
+		justify-content:space-around;
+	}
+
+	#git-activity div.week span {
+		width:34px;
+		height:34px;
+		padding:0;
+	}
+}

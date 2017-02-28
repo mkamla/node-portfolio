@@ -1,0 +1,59 @@
+<div class="{{page.title}} container">
+	<div class="mod-6 mod">
+		<h2 class="title">Personal</h2>
+		<article>
+			<section>
+
+				<p>For developers, describing complex processes in a few lines of code is generally easier than describing yourself. But, since you've stayed this long, I'll endulge you a bit.</p>
+
+				<p>I was born in the fine midwestern state of Nebraska, to a pair of wonderful parents that I am extremely grateful for. I met my wife and best friend while attending <a href="http://hastings.edu" target="_blank">Hastings College</a>. We ran track for four years together. She's still faster than me.</p>
+
+				<p>Outside of software, I enjoy reading, furniture, design, 20th century history, hording Chrome tabs and crashing my computer from too many aforementioned Chrome tabs.</p>
+
+				<p>At heart, I'm a maker interested in everything from creating my own typeface to automating my window blinds with a Raspberry Pi.</p>
+
+				<p>My software interests right now are in Node.JS, automation and data analysis.</p>
+			</section>
+		</article>
+	</div>
+	<div class="mod-6 mod">
+		<h2 class="title">Vitals</h2>
+		<ul class="bio-metric-stats">
+			<li>
+				<span class="label">Name:</span> {{page.whoami.name}}<br />
+			</li>
+
+			<li>
+				<span class="label">Alias:</span> <a href="https://twitter.com/9to5hack">@9to5hack</a>
+			</li>
+
+			<li class="time-since">
+				<span class="label">Age:</span> {{{timeSince page.whoami.birthDate}}}
+			</li>
+
+			<li>
+				<span class="label">Location:</span> {{page.whoami.currentLocation.lat}},{{page.whoami.currentLocation.lng}}
+			</li>
+
+			<li>
+				<span class="label">Employment</span>
+				<ul class="job-history">
+					{{#page.whoami.occupation}}
+					<li>
+						<span class="title">{{{this.title}}}</span>
+						<span class="employer-name">{{{this.employer}}}</span>
+						<span class="duration">
+							<span class="date start">{{{monthAbv this.start}}} {{{fullYear this.start}}}</span>
+							{{#if this.end}}
+							<span class="date end">{{{monthAbv this.end}}} {{{fullYear this.end}}}</span>
+							{{else}}
+							<span class="date end">Current</span>
+							{{/if}}
+						</span>
+						{{/page.whoami.occupation}}
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>

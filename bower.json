@@ -1,0 +1,23 @@
+{
+  "name": "mkamla-node-app",
+  "description": "Micah Kamla's portfolio",
+  "main": "index.js",
+  "authors": [
+    "Micah Kamla"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/components",
+    "test"
+  ],
+  "dependencies": {
+    "highcharts": "^5.0.2",
+    "jquery": "^3.1.1",
+    "highlight": "^9.8.0"
+  }
+}

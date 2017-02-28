@@ -1,0 +1,15 @@
+.sass-cache
+.env
+*.txt
+*.csv
+.git
+src/components
+public/fonts/**/*
+
+# MacOS
+.DS_Store
+.Trashes
+
+# NPM
+.npm-debug.log
+node_modules

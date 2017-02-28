@@ -1,0 +1,104 @@
+//log entry styling
+
+article {
+	width:100%;
+	display:block;
+	overflow:hidden;
+}
+
+article div.meta {
+	width:100%;
+	display:block;
+	overflow:hidden;	
+}
+
+article div.meta time {
+	padding:8px 0;
+	// border:solid 1px $secondaryText;
+	color:$secondaryText;
+	font-weight:300;
+	overflow:hidden;
+	display:inline-block;
+}
+
+article section {
+	width:100%;
+	padding:16px;
+	display:block;
+	overflow:hidden;
+}
+
+article section h1, article section h2, article section h3, article section h4 {
+	margin:0;
+	padding:24px 0 8px 0;
+	color:$text;
+	line-height:1.5;
+	font-weight:500;
+	text-shadow:none;
+}
+
+article section h1 {
+	color:$text;
+	font-family:$flamaLight;
+	font-size:2.4em;
+	font-weight:normal;
+}
+
+article section h2 {
+	font-size:1.8em;
+}
+
+article section h3 {
+	font-size:1.3em;
+}
+
+article section h4 {
+	color:saturate($secondaryText,10%);
+	font-size:1.3em;
+	font-weight:300;
+}
+
+article section ul, article section ul li {
+	list-style:disc outside none !important;
+}
+
+article section ul li {
+	color:$text;
+	font-size:1em;
+	font-weight:300;
+	line-height:1.5;
+}
+
+article section p {
+	max-width:800px;
+	width:100%;
+	margin:0;
+	padding:6px 0 10px;
+	color:$text;
+	font-family:$roboto;
+	font-weight:300;
+	font-size:1.1rem;
+	line-height:1.7;
+	overflow:hidden;
+}
+
+article section p a {
+	color:$purple;
+	// color:$cyan;
+	font-weight:300;
+	text-decoration:none;
+}
+
+article section p a:hover {
+	border-bottom:solid 1px $purple;
+}
+
+article section code {
+	padding:8px;
+}
+
+@media screen and (max-width:550px){
+	article section p {
+		font-size:1rem;
+	}	
+}

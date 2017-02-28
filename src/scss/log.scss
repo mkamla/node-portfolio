@@ -1,0 +1,121 @@
+ul.log-entries, ul.log-entries > li, ul.tags {
+	width:100%;
+	margin:0;
+	padding:0;
+	list-style:none;
+	overflow:hidden;
+	display:block;
+}
+
+ul.log-entries {
+	
+}
+
+ul.log-entries > li {
+	border-bottom:solid 1px $divider;
+	@include transition(background-color 200ms ease);
+}
+
+ul.log-entries > li:hover {
+	background-color:rgba(0,0,0,0.1);
+}
+
+ul.log-entries > li:last-child {
+	border-bottom:0;
+}
+
+ul.log-entries > li a {
+	width:100%;
+	overflow:hidden;
+	display:block;	
+}
+
+//if no tags present
+ul.log-entries > li a:last-child {
+	padding-bottom:12px;
+}
+
+ul.log-entries > li a > * {
+	width:100%;
+	padding-left:12px;
+	padding-right:12px;
+}
+
+ul.log-entries > li a .meta {
+
+}
+
+ul.log-entries > li a span.post-date, ul.log-entries > li a h2, ul.log-entries > li a p {
+	@include transition(color 200ms ease);
+}
+
+ul.log-entries > li a span.post-date {
+	padding:0 0 8px 0;
+	color:darken($secondaryText,5%);
+	font-size:14px;
+	font-weight:300;
+	display:block;
+	overflow:hidden;
+}
+
+ul.log-entries > li:hover a span.post-date, ul.log-entries > li:active a span.post-date {
+	color:$secondaryText;
+}
+
+ul.log-entries > li a h2, ul.log-entries > li a p {
+	color:darken($text,7%);
+}
+
+ul.log-entries > li:hover a h2, ul.log-entries > li:hover a p, ul.log-entries > li:active a h2, ul.log-entries > li:active a p {
+	color:$text;
+}
+
+ul.log-entries > li a h2 {
+	padding:12px 12px 6px 12px;
+	margin:0;
+	font-family:$flamaLight;
+}
+
+ul.log-entries > li a p {
+	margin:0;
+	padding:6px 12px;
+	font-weight:300;
+	line-height:1.5;
+}
+
+ul.log-entries > li a:hover h2, ul.log-entries > li a:hover p {
+	color:$text;
+}
+
+ul.tags {
+
+}
+
+ul.tags > li {
+	margin:0;
+	padding:0;
+	float:left;
+}
+
+ul.tags > li a {
+	padding:12px 16px 9px 16px;
+	border-bottom:solid 3px transparent;
+	color:$cyan;
+	font-family:$flamaLight;
+	font-size:12px;
+	font-weight:normal;
+	text-transform:uppercase;
+	text-align:center;
+	display:block;
+	overflow:hidden;
+	@include transition(all 300ms ease);
+}
+
+ul.tags:hover > li a {
+	color:darken($text,45%);
+}
+
+ul.tags > li a:hover {
+	color:$cyan;
+	border-bottom:solid 3px $cyan;
+}
