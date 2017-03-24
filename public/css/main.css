@@ -535,6 +535,10 @@ form.pending input[type="submit"] {
     display: block;
   }
 }
+.highcharts-credits {
+  display: none;
+}
+
 #git-activity div.week {
   width: 1.87%;
   padding: 2px;
@@ -903,3 +907,5 @@ form.contact-form.pending input:not([type="submit"]), form.contact-form.pending 
   font-weight: light;
   font-style: normal;
 }
+
+/*# sourceMappingURL=main.css.map */

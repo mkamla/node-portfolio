@@ -34,10 +34,15 @@ app.use('/',breadcrumbs.setHome({
 }));
 
 //routes
+app.use(function(req,rsp,next){
+	rsp.locals.showTests = (req.query.test === 1)?true:null;
+	next();
+});
+
 app.get('/',function(req,rsp){
 	var wakaTimeline = require('./model/wakaTimeline.js');
 
-	req.breadcrumbs('Dashboard');
+	req.breadcrumbs('Dashboard','/');
 
 	wakaTimeline.get(function(data){
 		rsp.render('dashboard',{
@@ -63,7 +68,7 @@ app.get('/',function(req,rsp){
 app.get('/log',function(req,rsp){
 	var posts = require('./model/posts.js');
 
-	req.breadcrumbs('Log');
+	req.breadcrumbs('Log','/log');
 
 	posts.scan('log',function(data){
 		console.log('getting post tables...');
@@ -102,7 +107,7 @@ app.get('/log/type/:tag',function(req,rsp){
 		queryObj = {'tags':req.params.tag};
 
 	req.breadcrumbs('Log','/log');
-	req.breadcrumbs(helper.convertCase(req.params.tag));
+	req.breadcrumbs(req.params.tag,'/log/type/'+req.params.tag);
 
 	posts.findTags('log',queryObj,function(data){
 		console.log('getting post tables...');
@@ -134,11 +139,12 @@ app.get('/log/:url',function(req,rsp){
 		queryObj = {'url':req.params.url};
 
 	req.breadcrumbs('Log','/log');
+	// req.breadcrumbs(req.params.url,'/log/'+req.params.url);
 
 	posts.find('log',queryObj,function(data){
 		console.log('getting post tables...');
 
-		req.breadcrumbs(data.Items[0].title);
+		req.breadcrumbs(data.Items[0].title,'/log/'+req.params.url);
 
 		rsp.render('logEntry',{
 			page: {
@@ -162,7 +168,7 @@ app.get('/log/:url',function(req,rsp){
 });
 
 app.get('/whoami',function(req,rsp){
-	req.breadcrumbs('Whoami');
+	req.breadcrumbs('Whoami','/whoami');
 
 	rsp.render('whoami',{
 		page: {
@@ -182,7 +188,7 @@ app.get('/whoami',function(req,rsp){
 });
 
 app.get('/contact',function(req,rsp){
-	req.breadcrumbs('Contact');
+	req.breadcrumbs('Contact','/contact');
 
 	rsp.render('contact',{
 		page: {

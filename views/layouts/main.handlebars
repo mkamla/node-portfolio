@@ -26,6 +26,10 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 
 
+		{{#if locals.showTests}}
+		<link rel="stylesheet" type="text/css" href="/vendor/mocha.css" />
+		{{/if}}
+
 		{{#if page.prefetch}}
 		{{#each page.prefetch}}
 		<link rel="prefetch" href="{{this}}" />
@@ -133,4 +137,22 @@
 			</div>
 			{{{body}}}
 		</main>			
+		{{#if locals.showTests}}
+		<script type="text/javascript" src="/vendor/mocha.js"></script>
+		<script type="text/javascript" src="/vendor/chai.js"></script>
+		<script type="text/javascript">
+			mocha.ui('tdd');
+			var assert = chai.assert;
+		</script>
+		
+		<script type="text/javascript" src="/qa/globalTests.js"></script>
+
+			{{#if pageTestScript}}
+			<script type="text/javascript" src="{{pageTestScript}}"></script>
+			{{/if}}
+
+		<script type="text/javascript">
+			mocha.run();
+		</script>
+		{{/if}}
 	</body>
