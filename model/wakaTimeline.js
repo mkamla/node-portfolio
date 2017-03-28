@@ -24,10 +24,11 @@ var formatDate = function(timestamp){
 
 var get = function(callback){
 	var date = new Date(),
-		offset = date.getTimezoneOffset(),
+		cstOffset = (date.dst)?-300:-360,
+		offset = date.getTimezoneOffset()+cstOffset,
 		timestamp = date.getTime(),
-		end = formatDate(timestamp + offset),
-		start = formatDate((timestamp + offset)-86400000*6);
+		end = formatDate(timestamp - (offset*60000)),
+		start = formatDate((timestamp - (offset*60000))-86400000*6);
 
 	console.log('Start: '+start+', End: '+end);
 

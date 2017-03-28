@@ -8,15 +8,16 @@
 			google: { families: ['Roboto+Mono:300:latin','Roboto:300,500:latin']}
 		};
 
-	settings.startDate = function(){
-		var d = new Date(),
-			offset = Math.abs(parseInt(d.getTimezoneOffset(),10)),
-			dataStart = new Date((d.getTime()-offset)-(86400000*6)),
-			year = dataStart.getFullYear(),
-			month = dataStart.getMonth(),
-			date = dataStart.getDate();
+	model.pointStartTimeOffset = function(){
+		var string = wakatime.start,
+			index = string.indexOf('T'),
+			timeArray = string.substr(index+1,8).split(':');
 
-		return Date.UTC(year, month, date, 0, 0, 0);
+		for(var i in timeArray){
+			timeArray[i] = parseInt(timeArray[i],10);
+		}
+
+		return (timeArray[0]*3600000)+(timeArray[1]*60000)+(timeArray[2]*1000);
 	};
 
 	model.wakatime = function(){
@@ -24,10 +25,9 @@
 		try {
 			for(var i in wakatime.data){
 				dataSeries.push(wakatime.data[i].grand_total.total_seconds/3600);
-				// console.log(dataSeries);
 			}
-		} catch(e){
-			// console.log(e);
+		} catch(err){
+			console.log(err);
 		}
 
 		return dataSeries;
@@ -220,7 +220,7 @@
 					minutes = minutesTotal%60,
 					d = new Date(this.x),
 					offset = d.getTimezoneOffset()*60000,
-					dateObj = new Date(d.getTime()+offset),
+					dateObj = new Date(d.getTime()+model.pointStartTimeOffset()),
 					year = dateObj.getFullYear(),
 					month = dateObj.getMonth(),
 					date = dateObj.getDate(),
@@ -232,7 +232,7 @@
 				};
 
 				var dayAbv = function(index){
-					var dayList = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+					var dayList = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 					return dayList[index];
 				};
 				
@@ -263,14 +263,14 @@
 					]
 				},
 				marker: {
-					fillColor: Highcharts.Color(Highcharts.getOptions().colors[4]).setOpacity(0).get('rgba'),//Highcharts.getOptions().colors[4],
+					fillColor: Highcharts.Color(Highcharts.getOptions().colors[4]).setOpacity(0).get('rgba'),
 					enabled: true,
 					radius:6,
 					lineWidth: 2,
 					lineColor: '#fff200'
 				},
-				pointInterval: 86400000, // one day
-				pointStart: settings.startDate()
+				pointInterval: 86400000,// one day
+				pointStart: new Date(wakatime.start).getTime()-model.pointStartTimeOffset()
 			}
 		},
 		series: [{
@@ -547,12 +547,8 @@
 
 	var init = function(){
 		window.WebFontConfig = WebFontConfig;
-		// console.log(window.wakatime);
-		// console.log(model.wakatimeLanguageBreakdown(window.wakatime));
-		// console.log(model.languageSeries(model.wakatimeLanguageBreakdown(window.wakatime)));
 
 		if($('form.contact-form').length){
-			// console.log('Form init');
 			formModule.init('form.contact-form',{
 				actionURL: '/api/contact',
 				sendSuccess: controller.validateContactForm
@@ -567,7 +563,6 @@
 				completed++;
 
 				if(completed >= asyncCalls){
-					console.log('all git data is present');
 					window.githubActivity.init();
 				}
 			};
@@ -612,7 +607,6 @@
 		}
 
 		if($('.log-entry').length && $('pre code').length){
-			// console.log('entry');
 			hljs.initHighlightingOnLoad();
 		}
 
