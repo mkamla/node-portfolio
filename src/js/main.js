@@ -8,16 +8,28 @@
 			google: { families: ['Roboto+Mono:300:latin','Roboto:300,500:latin']}
 		};
 
+	if(!window.wakatime){
+		window.wakatime = {
+			start: 0,
+			end: 0
+		};
+	}
+
 	model.pointStartTimeOffset = function(){
-		var string = wakatime.start,
-			index = string.indexOf('T'),
-			timeArray = string.substr(index+1,8).split(':');
+		try{
+			var string = wakatime.start,
+				index = string.indexOf('T'),
+				timeArray = string.substr(index+1,8).split(':');
 
-		for(var i in timeArray){
-			timeArray[i] = parseInt(timeArray[i],10);
+			for(var i in timeArray){
+				timeArray[i] = parseInt(timeArray[i],10);
+			}
+
+			return (timeArray[0]*3600000)+(timeArray[1]*60000)+(timeArray[2]*1000);
+		} catch (err){
+			new Error(err);
 		}
-
-		return (timeArray[0]*3600000)+(timeArray[1]*60000)+(timeArray[2]*1000);
+		
 	};
 
 	model.wakatime = function(){
