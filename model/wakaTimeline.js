@@ -40,6 +40,8 @@ var get = function(callback){
 		end = formatDate(timestamp - (offset*60000)),
 		start = formatDate((timestamp - (offset*60000))-86400000*6);
 
+	console.log('DST: '+date.dst);
+	console.log('Server Timezone offset: '+date.getTimezoneOffset());
 	console.log('Start: '+start+', End: '+end);
 
 	var requestOptions = {
