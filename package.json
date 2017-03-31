@@ -27,6 +27,7 @@
     "url": "https://github.com/mkamla/web-app.git"
   },
   "dependencies": {
+    "body-parser": "^1.17.1",
     "compression": "^1.6.2",
     "dotenv": "^2.0.0",
     "express": "^4.13.3",

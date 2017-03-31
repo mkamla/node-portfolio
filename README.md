@@ -22,4 +22,4 @@ npm install
 - Add testing suites
 - Add NPM script to generate .env file
 - Fix IE sidebar layout bug
-- Fix contact form submission handling
+- Fix contact form submission views after submission

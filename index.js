@@ -1,5 +1,6 @@
 var express = require('express'),
 	https = require('https'),
+	bodyParser = require('body-parser'),
 	compression = require('compression'),
 	app = express(),
 	breadcrumbs = require('express-breadcrumbs'),
@@ -17,6 +18,9 @@ var handlebars = require('express-handlebars').create({
 	defaultLayout:'main',
 	helpers: require('./views/helpers/main.js')
 });
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 
 app.engine('handlebars',handlebars.engine);
 app.set('view engine', 'handlebars');
@@ -208,6 +212,8 @@ app.get('/contact',function(req,rsp){
 
 app.post('/api/contact',function(req,rsp){
 	var email = require('./model/email.js');
+
+	console.log(req.body);
 
 	var emailResponse = email.validate(req.body);
 
