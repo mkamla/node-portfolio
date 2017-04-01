@@ -90,7 +90,7 @@
 				type: 'POST',
 				url: config.actionURL,
 				data: data,
-				success:  function(data){
+				success: function(data){
 					config.sendSuccess(data);
 				},
 				error: function(){
@@ -183,7 +183,7 @@
 		var submitBtn = view.form.find('input[type="submit"]');
 
 		view.form.addClass('pending');
-		submitBtn.value('Sending...');
+		submitBtn.attr('value','Sending...');
 	};
 
 	view.active = function(){
@@ -243,6 +243,8 @@
 	};
 
 	var controllerPublic = {
+		enableSubmit: controller.enableSubmit,
+		disableSubmit: controller.disableSubmit,
 		formSubmit: controller.formSubmit
 	};
 

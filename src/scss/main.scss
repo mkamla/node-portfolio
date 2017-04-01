@@ -346,8 +346,6 @@ form input, form textarea {
 	font-size:16px;
 	font-weight:300;
 	line-height:1.5;
-	@include transform(translateY(0));
-	@include transition(all 200ms);
 }
 
 form input {	

@@ -75,6 +75,7 @@
 		console.log(fieldName+' not valiated');
 		model.validated = false;
 		controller.enableSubmit();
+		view.active();
 		view.validationError(fieldName);
 		// return false;
 	};
@@ -90,7 +91,7 @@
 				type: 'POST',
 				url: config.actionURL,
 				data: data,
-				success:  function(data){
+				success: function(data){
 					config.sendSuccess(data);
 				},
 				error: function(){
@@ -183,17 +184,17 @@
 		var submitBtn = view.form.find('input[type="submit"]');
 
 		view.form.addClass('pending');
-		submitBtn.html('Sending...');
+		submitBtn.attr('value','Sending...');
 	};
 
 	view.active = function(){
 		var submitBtn = view.form.find('input[type="submit"]');
 		view.form.removeClass('pending');
-		submitBtn.html('Send');	
+		submitBtn.attr('value','Send');	
 	};
 
 	view.removeErrorClass = function(){
-		view.form.find('input, textrea').removeClass('input-error');
+		view.form.find('.input-error').removeClass('input-error');
 	};
 
 	view.validationError = function(fieldName){
@@ -243,6 +244,8 @@
 	};
 
 	var controllerPublic = {
+		enableSubmit: controller.enableSubmit,
+		disableSubmit: controller.disableSubmit,
 		formSubmit: controller.formSubmit
 	};
 

@@ -333,16 +333,6 @@ form input, form textarea {
   font-size: 16px;
   font-weight: 300;
   line-height: 1.5;
-  -webkit-transform: translateY(0);
-  -moz-transform: translateY(0);
-  -o-transform: translateY(0);
-  -ms-transform: translateY(0);
-  transform: translateY(0);
-  -webkit-transition: all 200ms;
-  -moz-transition: all 200ms;
-  -o-transition: all 200ms;
-  -ms-transition: all 200ms;
-  transition: all 200ms;
 }
 
 form input {
@@ -894,12 +884,78 @@ ul.bio-metric-stats ul li span.date.end:before {
   content: " - ";
 }
 
+form.contact-form div.message {
+  width: 100%;
+  margin: 0 auto;
+  padding: 16px;
+  color: #8be9fd;
+  font-family: "Flama Light", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  text-align: center;
+  -webkit-transform: translateY(-200%);
+  -moz-transform: translateY(-200%);
+  -o-transform: translateY(-200%);
+  -ms-transform: translateY(-200%);
+  transform: translateY(-200%);
+}
+
+form.contact-form .input-error {
+  border-color: #ff5555;
+}
+
+form.contact-form input, form.contact-form textarea {
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -o-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
+  -webkit-transition: transform 400ms ease;
+  -moz-transition: transform 400ms ease;
+  -o-transition: transform 400ms ease;
+  -ms-transition: transform 400ms ease;
+  transition: transform 400ms ease;
+}
+
+form.contact-form input[name="email"] {
+  -webkit-transition: transform 400ms 50ms ease;
+  -moz-transition: transform 400ms 50ms ease;
+  -o-transition: transform 400ms 50ms ease;
+  -ms-transition: transform 400ms 50ms ease;
+  transition: transform 400ms 50ms ease;
+}
+
+form.contact-form textarea {
+  -webkit-transition: transform 400ms 100ms ease;
+  -moz-transition: transform 400ms 100ms ease;
+  -o-transition: transform 400ms 100ms ease;
+  -ms-transition: transform 400ms 100ms ease;
+  transition: transform 400ms 100ms ease;
+}
+
+form.contact-form input[type="submit"] {
+  margin: 12px auto;
+  -webkit-transition: transform 300ms 200ms ease;
+  -moz-transition: transform 300ms 200ms ease;
+  -o-transition: transform 300ms 200ms ease;
+  -ms-transition: transform 300ms 200ms ease;
+  transition: transform 300ms 200ms ease;
+}
+
 form.contact-form.pending input:not([type="submit"]), form.contact-form.pending textarea {
-  -webkit-transform: translateY(-1000px);
-  -moz-transform: translateY(-1000px);
-  -o-transform: translateY(-1000px);
-  -ms-transform: translateY(-1000px);
-  transform: translateY(-1000px);
+  -webkit-transform: translateX(120%);
+  -moz-transform: translateX(120%);
+  -o-transform: translateX(120%);
+  -ms-transform: translateX(120%);
+  transform: translateX(120%);
+}
+
+form.contact-form.pending input[type="submit"] {
+  -webkit-transform: translateY(-200%);
+  -moz-transform: translateY(-200%);
+  -o-transform: translateY(-200%);
+  -ms-transform: translateY(-200%);
+  transform: translateY(-200%);
 }
 
 @font-face {

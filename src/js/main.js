@@ -406,8 +406,11 @@
 		// series: model.IDESeries(model.IDEBreakdown(window.wakatime))
 	};
 
-	view.formSuccess = function(formData){
-		var formEl = $('.contact-form');
+	view.successMessage = function(formEl,callback){
+		var submitBtn = formEl.find('input[type="submit"]');
+
+		submitBtn.before('<div class="message success">Your message was successfully delivered.</div>');
+		submitBtn.attr('value','Continue');
 	};
 
 	view.formError = function(errorData){
@@ -460,10 +463,39 @@
 		}
 	};
 
+	controller.formSuccess = function(formData,callback){
+		var formEl = $('.contact-form'),
+			submitBtn = formEl.find('input[type="submit"]');
+
+		submitBtn.unbind('click');
+		submitBtn.on('click',controller.resetForm);
+
+		view.successMessage(formEl,function(){
+			submitBtn.unbind('click');
+		});
+	};
+
+	controller.resetForm = function(e){
+		e.preventDefault();
+		var formEl = $('.contact-form');
+
+		$(this).attr('value','Send');
+		formModule.controller.disableSubmit();
+		formModule.view.clearForm();
+		formModule.view.removeErrorClass();
+
+		formEl.find('.message').remove();
+		formEl.removeClass('pending');
+
+		formModule.controller.enableSubmit();
+	};
+
 	controller.validateContactForm = function(rsp){
-		console.log(rsp);
+		// console.log(rsp);
 		if(rsp.length || rsp.status === 'ok'){
-			view.formSuccess(rsp.data);
+			controller.formSuccess(rsp.data,function(){
+				$('.contact-form input[type="submit"]').on('click',controller.resetForm);
+			});
 		} else {
 			view.formError(rsp.errors);
 		}

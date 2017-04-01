@@ -1,3 +1,41 @@
+form.contact-form div.message {
+	width:100%;
+	margin:0 auto;
+	padding:16px;
+	color:$cyan;
+	font-family:$flamaLight;
+	font-weight:300;
+	font-size:24px;
+	text-align:center;
+	@include transform(translateY(-200%));
+}
+
+form.contact-form .input-error {
+	border-color:$red;
+}
+
+form.contact-form input, form.contact-form textarea {
+	@include transform(translateX(0));
+	@include transition(transform 400ms ease);
+}
+
+form.contact-form input[name="email"] {
+	@include transition(transform 400ms 50ms ease);
+}
+
+form.contact-form textarea {
+	@include transition(transform 400ms 100ms ease);
+}
+
+form.contact-form input[type="submit"] {
+	margin:12px auto;
+	@include transition(transform 300ms 200ms ease);
+}
+
 form.contact-form.pending input:not([type="submit"]), form.contact-form.pending textarea {
-	@include transform(translateY(-1000px));
+	@include transform(translateX(120%));
+}
+
+form.contact-form.pending input[type="submit"] {
+	@include transform(translateY(-200%));
 }
