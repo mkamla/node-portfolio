@@ -17,7 +17,7 @@ module.exports = {
 		var articleTime = function(){
 			var modifiedTime = (post.hasOwnProperty('lastModifiedTime'))?'<time date-time="'+post.lastModifiedTime+'">'+post.lastModifiedTime+'</time>':'';
 
-			return '<div class="meta"><time date-time="'+post.createdTime+'">'+post.createdTime+'</time>'+modifiedTime+'</div>';
+			return '<div class="meta"><time itemprop="age" datetime="'+post.createdTime+'">'+post.createdTime+'</time>'+modifiedTime+'</div>';
 		};
 
 		if(index !== -1){

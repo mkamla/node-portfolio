@@ -46,7 +46,7 @@ section, div, ul, li {
 	overflow:hidden;
 }
 
-nav {
+header {
 	width:16%;
 	height:100%;
 	background-color:$panel;
@@ -59,13 +59,29 @@ nav {
 	// @include transform(translateX(-100%));
 }
 
-body.ready nav {
+header h1 {
+	font-size:18px;
+}
+
+header h1, header h2 {
+	margin:4px 0;
+	padding:0;
+	color:$cyan;
+	font-family:$flamaLight;
+	font-size:14px;
+	font-weight:300;
+	text-align:center;
+	line-height:1;
+	opacity:1;
+}
+
+body.ready header {
 	// @include transform(translateX(0));
 }
 
-nav > a.home {
+div.avatar {
 	width:50%;
-	margin:16px auto;
+	margin:8px auto;
 	padding:50% 0 0 0;
 	border:solid 2px rgba(#FFF,0.2);
 	border-radius:50%;
@@ -75,7 +91,7 @@ nav > a.home {
 	overflow:hidden;
 }
 
-nav > a #site_logo {
+div.avatar #site_logo {
 	width:100%;
 	height:auto;
 	margin:-35% 0 0 0;
@@ -89,8 +105,13 @@ nav > a #site_logo {
 	@include transition(all 400ms 800ms ease);
 }
 
-.ready nav > a #site_logo {
+.ready div.avatar #site_logo {
 	opacity:1;
+}
+
+nav {
+	width:100%;
+	margin:16px 0 0 0;
 }
 
 nav ul {
@@ -395,17 +416,29 @@ form.pending input[type="submit"] {
 	text-transform:uppercase;
 }
 
+@media screen and (min-width:991px) and (max-width:1280px){
+	nav ul li a {
+		padding:12px 10px;
+		font-size:16px;
+	}
+
+}
+
 @media screen and (max-width:990px){
 	body {
 		padding-top:64px;
 	}
 
-	nav {
+	header {
 		width:100%;
 		height:auto;
 	}
 
-	nav > a.home {
+	header h1, header h2 {
+		display:none;
+	}
+
+	div.avatar {
 		width:112px;
 		height:auto;
 		margin:0;
@@ -413,13 +446,13 @@ form.pending input[type="submit"] {
 		background-color:transparent;
 		border:0;
 		border-radius:0;
-		box-shadow:0;
+		box-shadow:none;
 		float:left;
 		overflow:hidden;
 		display:block;
 	}
 
-	nav > a #site_logo {
+	div.avatar #site_logo {
 		width:100%;
 		height:auto;
 		margin:0;
@@ -430,9 +463,16 @@ form.pending input[type="submit"] {
 		overflow:hidden;
 		@include transition(all 400ms 800ms ease);
 	}
+	
+	nav {
+		width:85%;
+		margin:0;
+		overflow:hidden;
+	}
 
 	nav ul {
-		width:75%;
+		width:100%;
+		margin:10px 0 0 0;
 		float:right;
 	}
 
@@ -442,7 +482,9 @@ form.pending input[type="submit"] {
 	}
 
 	nav ul li a {
+		padding:12px;
 		border-left:0;
+		font-size:17px;
 		text-align:center;
 	}
 
@@ -478,7 +520,7 @@ form.pending input[type="submit"] {
 		float:none;
 	}
 
-	nav {
+	header {
 		height:auto;
 		// background-color:transparent;
 		position:fixed;
@@ -489,12 +531,17 @@ form.pending input[type="submit"] {
 		// z-index:0;
 	}
 
-	nav a.home {
+	div.avatar {
 		display:none;
+	}
+	
+	nav {
+		width:100%;
 	}
 
 	nav ul {
 		width:100%;
+		margin:0;
 		float:none;
 	}
 
@@ -524,7 +571,7 @@ form.pending input[type="submit"] {
 	}
 }
 
-@media screen and (max-width:550px){
+@media screen and (max-width:599px){
 	nav ul li a {
 		padding:8px 3px 12px 3px;
 		font-size:12px;

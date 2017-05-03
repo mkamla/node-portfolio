@@ -1,16 +1,13 @@
 <div class="{{page.title}} container">
 	<div class="mod-6 mod">
-		<h2 class="title">Personal</h2>
+		<h2 class="title">About</h2>
 		<article>
 			<section>
+				<p>I was born in Nebraska (<a href="http://journalstar.com/business/local/the-good-life-again-nebraska-s-new-state-brand-brings/article_a92d622e-87e7-5561-9370-953a053605de.html" target="_blank">The Good Life</a>), to a pair of wonderful parents that I am extremely grateful for. I met my wife and best friend while attending <a href="http://hastings.edu" target="_blank">Hastings College</a>. We competed in track &amp; field for four years together. She's still faster than me.</p>
 
-				<p>For developers, describing complex processes in a few lines of code is generally easier than describing yourself. But, since you've stayed this long, I'll endulge you a bit.</p>
+				<p>Outside of software, I enjoy reading, design, furniture and staying active in the track &amp; field community.</p>
 
-				<p>I was born in the fine midwestern state of Nebraska, to a pair of wonderful parents that I am extremely grateful for. I met my wife and best friend while attending <a href="http://hastings.edu" target="_blank">Hastings College</a>. We ran track for four years together. She's still faster than me.</p>
-
-				<p>Outside of software, I enjoy reading, furniture, design, 20th century history, hording Chrome tabs and crashing my computer from too many aforementioned Chrome tabs.</p>
-
-				<p>At heart, I'm a maker interested in everything from creating my own typeface to automating my window blinds with a Raspberry Pi.</p>
+				<p>At heart, I'm a maker interested in everything from creating my own typeface to automating my window blinds with a Raspberry Pi. While I pride myself in technical proficiency, answering the question, 'Why?' takes precedence over 'How?'</p>
 
 				<p>My software interests right now are in Node.JS, automation and data analysis.</p>
 			</section>
@@ -20,7 +17,7 @@
 		<h2 class="title">Vitals</h2>
 		<ul class="bio-metric-stats">
 			<li>
-				<span class="label">Name:</span> {{page.whoami.name}}<br />
+				<span class="label">Name:</span> {{page.person.name}}<br />
 			</li>
 
 			<li>
@@ -28,17 +25,17 @@
 			</li>
 
 			<li class="time-since">
-				<span class="label">Age:</span> {{{timeSince page.whoami.birthDate}}}
+				<span class="label">Age:</span> {{{timeSince page.person.birthDate}}}
 			</li>
 
 			<li>
-				<span class="label">Location:</span> {{page.whoami.currentLocation.lat}},{{page.whoami.currentLocation.lng}}
+				<span class="label">Location:</span> {{page.person.currentLocation.lat}},{{page.person.currentLocation.lng}}
 			</li>
 
 			<li>
 				<span class="label">Employment</span>
 				<ul class="job-history">
-					{{#page.whoami.occupation}}
+					{{#page.person.occupation}}
 					<li>
 						<span class="title">{{{this.title}}}</span>
 						<span class="employer-name">{{{this.employer}}}</span>
@@ -50,7 +47,7 @@
 							<span class="date end">Current</span>
 							{{/if}}
 						</span>
-						{{/page.whoami.occupation}}
+						{{/page.person.occupation}}
 					</li>
 				</ul>
 			</li>

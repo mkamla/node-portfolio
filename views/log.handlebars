@@ -7,9 +7,9 @@
 						<h2 class="title">{{this.title}}</h2>
 						<div class="meta">
 							{{#if this.lastModifiedTime}}
-							<span class="post-date modified">Updated: {{this.lastModifiedTime}}</span>
+							<time itemprop="updated" datetime="{{this.lastModifiedTime}}" class="post-date modified">Updated: {{this.lastModifiedTime}}</time>
 							{{else}}
-							<span class="post-date created">{{this.createdTime}}</span>
+							<time itemprop="created" datetime="{{this.createdTime}}" class="post-date created">{{this.createdTime}}</time>
 							{{/if}}
 						</div>
 						<p class="preview-text">{{{this.previewText}}}</p>

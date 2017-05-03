@@ -45,11 +45,11 @@ ul.log-entries > li a .meta {
 
 }
 
-ul.log-entries > li a span.post-date, ul.log-entries > li a h2, ul.log-entries > li a p {
+ul.log-entries > li a time.post-date, ul.log-entries > li a h2, ul.log-entries > li a p {
 	@include transition(color 200ms ease);
 }
 
-ul.log-entries > li a span.post-date {
+ul.log-entries > li a time.post-date {
 	padding:0 0 8px 0;
 	color:darken($secondaryText,5%);
 	font-size:14px;
@@ -58,7 +58,7 @@ ul.log-entries > li a span.post-date {
 	overflow:hidden;
 }
 
-ul.log-entries > li:hover a span.post-date, ul.log-entries > li:active a span.post-date {
+ul.log-entries > li:hover a time.post-date, ul.log-entries > li:active a time.post-date {
 	color:$secondaryText;
 }
 

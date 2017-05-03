@@ -53,6 +53,7 @@ app.get('/',function(req,rsp){
 			page: {
 				title: 'Dashboard',
 				description: 'Micah Kamla is a software developer in Houston, TX.',
+				person: require('./model/whoami'),
 				prefetch: ['/whoami','/contact'],
 				activeNav: 'dashboard'
 			},
@@ -91,6 +92,7 @@ app.get('/log',function(req,rsp){
 			page: {
 				title: 'Log',
 				description: 'Log Entries',
+				person: require('./model/whoami'),
 				prefetch: prefetch,
 				activeNav: 'log',
 				log: data,
@@ -120,6 +122,7 @@ app.get('/log/type/:tag',function(req,rsp){
 			page: {
 				title: req.params.tag,
 				description: req.params.tag+' log entries',
+				person: require('./model/whoami'),
 				prefetch: ['/whoami','/contact'],
 				activeNav: 'log',
 				log: data
@@ -154,6 +157,7 @@ app.get('/log/:url',function(req,rsp){
 			page: {
 				title: 'Log',
 				description: data.Items[0].title,
+				person: require('./model/whoami'),
 				activeNav: 'log',
 				entry: data
 			},
@@ -178,9 +182,9 @@ app.get('/whoami',function(req,rsp){
 		page: {
 			title: 'Whoami',
 			description: 'About Micah Kamla',
+			person: require('./model/whoami'),
 			prefetch: ['/contact'],
-			activeNav: 'whoami',
-			whoami: require('./model/whoami.js')
+			activeNav: 'whoami'
 		},
 		breadcrumbs: req.breadcrumbs(),
 		dependencies: {
@@ -198,6 +202,7 @@ app.get('/contact',function(req,rsp){
 		page: {
 			title: 'Contact',
 			description: 'Contact Micah Kamla',
+			person: require('./model/whoami'),
 			prefetch: ['/whoami'],
 			activeNav: 'contact'
 		},
