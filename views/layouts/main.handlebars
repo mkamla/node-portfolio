@@ -25,6 +25,14 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 
+		{{#if page.entry}}
+		{{#each page.entry.Items}}
+			<meta itemprop="datePublished" content="{{{metaTagDate this.createdTime}}}"/>
+			{{#if this.lastModifiedTime}}
+			<meta itemprop="dateModified" content="{{{metaTagDate this.lastModifiedTime}}}"/>
+			{{/if}}
+		{{/each}}
+		{{/if}}
 
 		{{#if locals.showTests}}
 		<link rel="stylesheet" type="text/css" href="/vendor/mocha.css" />

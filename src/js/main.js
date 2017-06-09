@@ -651,7 +651,9 @@
 		}
 
 		if($('.log-entry').length && $('pre code').length){
-			hljs.initHighlightingOnLoad();
+			$('pre code').each(function(i,element){
+				hljs.highlightBlock(element);
+			});
 		}
 
 		(function() {

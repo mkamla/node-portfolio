@@ -19,8 +19,7 @@ module.exports = function(grunt){
 				files: {
 					'src/js/components.js': [
 						'src/components/jquery/dist/jquery.min.js',
-						'src/components/highcharts/highcharts.js',
-						'src/components/highlight/src/highlight.js'
+						'src/components/highcharts/highcharts.js'
 					]
 				}
 			},

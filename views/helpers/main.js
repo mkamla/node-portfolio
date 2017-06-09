@@ -1,3 +1,13 @@
+var metaTagDate = function(date){
+	return new Date(date).toISOString();
+};
+
+var shortDay = function(dayDigit){
+	var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+	return days[parseInt(dayDigit,10)];
+};
+
 var shortMonth = function(monthDigit){
 	var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
@@ -10,14 +20,19 @@ var longMonth = function(monthDigit){
 	return months[parseInt(monthDigit,10)];
 };
 
+var formatNiceDate = function(postDate){
+	var d = new Date(postDate);
+	return shortDay(d.getDay())+'. '+shortMonth(d.getMonth())+'. '+d.getDate()+', '+d.getFullYear();
+};
+
 module.exports = {
 	bodyContent: function(post){
 		var index = post.body.indexOf('</h1>');
 
 		var articleTime = function(){
-			var modifiedTime = (post.hasOwnProperty('lastModifiedTime'))?'<time date-time="'+post.lastModifiedTime+'">'+post.lastModifiedTime+'</time>':'';
+			var modifiedTime = (post.hasOwnProperty('lastModifiedTime'))?'<time date-time="'+post.lastModifiedTime+'">'+formatNiceDate(post.lastModifiedTime)+'</time>':'';
 
-			return '<div class="meta"><time itemprop="age" datetime="'+post.createdTime+'">'+post.createdTime+'</time>'+modifiedTime+'</div>';
+			return '<div class="meta"><time datetime="'+post.createdTime+'">'+formatNiceDate(post.createdTime)+'</time></div>';
 		};
 
 		if(index !== -1){
@@ -73,5 +88,7 @@ module.exports = {
 		var date = new Date(dateString);
 
 		return longMonth(date.getMonth());
-	}
+	},
+	metaTagDate: metaTagDate,
+	formatNiceDate: formatNiceDate
 }

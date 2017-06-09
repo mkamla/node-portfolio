@@ -155,7 +155,7 @@ app.get('/log/:url',function(req,rsp){
 
 		rsp.render('logEntry',{
 			page: {
-				title: 'Log',
+				title: data.Items[0].title,
 				description: data.Items[0].title,
 				person: require('./model/whoami'),
 				activeNav: 'log',
@@ -164,11 +164,11 @@ app.get('/log/:url',function(req,rsp){
 			breadcrumbs: req.breadcrumbs(),
 			dependencies: {
 				js: [
-					'/js/main.js'
+					'/js/main.js',
+					'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js'
 				],
 				css: [
-					'http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css',
-					'http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/dracula.min.css'
+					'/css/dracula.css'
 				]
 			}
 		});

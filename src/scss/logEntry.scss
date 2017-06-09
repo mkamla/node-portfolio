@@ -97,6 +97,11 @@ article section code {
 	padding:8px;
 }
 
+//override HLJS background color to fit SCSS theme
+.hljs {
+	background:lighten($background,3%);
+}
+
 @media screen and (max-width:550px){
 	article section p {
 		font-size:1rem;

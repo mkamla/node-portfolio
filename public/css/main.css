@@ -881,6 +881,10 @@ article section code {
   padding: 8px;
 }
 
+.hljs {
+  background: #211d37;
+}
+
 @media screen and (max-width: 550px) {
   article section p {
     font-size: 1rem;
