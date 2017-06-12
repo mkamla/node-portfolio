@@ -35,7 +35,6 @@
 	controller.createActivityModule = function(target,data){
 		// controller.mergeGitData();
 		// data = w.github;
-		console.log('creating activity view');
 		target.append(view.legend);
 
 		for(var weekTimestamp in data){
@@ -60,9 +59,8 @@
 	controller.mergeGitData = function(a,b){
 		var aTimestamps = [],//start collecting timestamps (keys)
 			bTimestamps = [],//start collecting timestamps (keys)
-			aSize = 0,
-			bSize = 0,
-			aMax,bMax;
+			d = Math.floor(new Date().getTime()/1000),
+			aMax,bMax,weeksRecorded;
 
 		var maxOfArray = function(array){
 			return Math.max.apply(null,array);
@@ -72,32 +70,8 @@
 			return Math.min.apply(null,array);
 		};
 
-		for(var y in a){
-			var weekNum = parseInt(y,10),
-				d = new Date(weekNum*1000);
-
-			aTimestamps.push(y);
-			aSize++;
-			// console.log('Github key date conversion '+d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()+'');	
-		}
-
 		for(var x in b){
-			var weekNum = parseInt(x,10),
-				d = new Date(weekNum*1000);
-			// console.log('Gitlab key date conversion '+d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()+'');			
-
-			bTimestamps.push(x);
-			bSize++;
-
-			try{
-				if((a[x])){
-					// console.log('match at '+x);
-				} else {
-					// console.log('no match at '+x);
-				}
-			} catch (e){
-
-			}
+			bTimestamps.push(parseInt(x,10));
 
 			if(a.hasOwnProperty(x)){
 				a[x].total += b[x].total;
@@ -105,23 +79,41 @@
 				for(var day in a[x].days){
 					a[x].days[day] += b[x].days[day];
 				}
+			} else {
+				a[x] = {
+					total: b[x].total,
+					days: b[x].days
+				};
 			}
+		}
+
+		for(var week in a){
+			aTimestamps.push(parseInt(week,10));
 		}
 
 		//find the maximum week-ending timestamp from each data set
 		aMax = maxOfArray(aTimestamps);
-		bMax = maxOfArray(bTimestamps);
+		aMin = minOfArray(aTimestamps);
 
-		//merge latest week-ending timestamp - we are merging arg "b" into arg "a", so there's no reason to leave an "else" statement to merge a into b in the event that a has a greater week-ending timestamp available - it will have already been established.
-		if(!aTimestamps[Math.max(aMax,bMax)]){
-			a[bMax] = b[bMax];
+		while(aMax <= d){
+			aMax += 604800;//(7*86400) = week
 
-			//if more weeks than a year, trim the first index
-			if(aSize >= 52){
-				var key = minOfArray(aTimestamps);
-
-				delete a[key];
+			a[aMax] = {
+				days: Array.apply(null, Array(7)).map(Number.prototype.valueOf,0),
+				total: 0
 			}
+		}
+
+		weeksRecorded = Object.keys(a).length;
+
+		while(weeksRecorded < 52){
+			aMin -= 604800;
+			a[aMin] = {
+				days: Array.apply(null, Array(7)).map(Number.prototype.valueOf,0),
+				total: 0	
+			};
+
+			weeksRecorded++;
 		}
 
 		return a;
@@ -133,8 +125,6 @@
 
 		var mergedData = controller.mergeGitData(model.github,model.gitlab);
 
-		console.log('mergedData');
-		console.log(mergedData);
 		controller.createActivityModule($('#git-activity'),mergedData);
 	};
 
