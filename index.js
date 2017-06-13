@@ -29,7 +29,17 @@ app.disable('x-powered-by');
 app.set('port',process.env.PORT || 8080);
 
 app.use(compression());
-
+app.use(function(req,rsp,next){
+	if(app.get('env') === 'production'){
+		var env = require('dotenv').config();
+		rsp.locals.production = true;
+		rsp.locals.GATrackingID = (process.env.GA_TRACKING_ID)? process.env.GA_TRACKING_ID: 'null';
+	} else {
+		rsp.locals.showTests = (req.query.test === 1)?true:null;
+		rsp.locals.production = null;
+	}
+	next();
+});
 app.use(breadcrumbs.init());
 app.use(breadcrumbs.setHome());
 app.use('/',breadcrumbs.setHome({
@@ -38,10 +48,6 @@ app.use('/',breadcrumbs.setHome({
 }));
 
 //routes
-app.use(function(req,rsp,next){
-	rsp.locals.showTests = (req.query.test === 1)?true:null;
-	next();
-});
 
 app.get('/',function(req,rsp){
 	var wakaTimeline = require('./model/wakaTimeline.js');
