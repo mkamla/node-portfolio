@@ -57,10 +57,9 @@
 
 	//merge github and gitlab data
 	controller.mergeGitData = function(a,b){
-		var aTimestamps = [],//start collecting timestamps (keys)
-			bTimestamps = [],//start collecting timestamps (keys)
+		var timestamps = [],//start collecting timestamps (keys)
 			d = Math.floor(new Date().getTime()/1000),
-			aMax,bMax,weeksRecorded;
+			aMax,aMin,weeksRecorded;
 
 		var maxOfArray = function(array){
 			return Math.max.apply(null,array);
@@ -70,9 +69,8 @@
 			return Math.min.apply(null,array);
 		};
 
+		//merge two objects (b into a)
 		for(var x in b){
-			bTimestamps.push(parseInt(x,10));
-
 			if(a.hasOwnProperty(x)){
 				a[x].total += b[x].total;
 				// if(a[x])
@@ -88,32 +86,46 @@
 		}
 
 		for(var week in a){
-			aTimestamps.push(parseInt(week,10));
+			timestamps.push(parseInt(week,10));
 		}
 
 		//find the maximum week-ending timestamp from each data set
-		aMax = maxOfArray(aTimestamps);
-		aMin = minOfArray(aTimestamps);
+		aMax = maxOfArray(timestamps);
+		aMin = minOfArray(timestamps);
 
-		while(aMax <= d){
-			aMax += 604800;//(7*86400) = week
+		if(timestamps.length < 52){
+			while(aMax <= d){
+				aMax += 604800;//(7*86400) = week
 
-			a[aMax] = {
-				days: Array.apply(null, Array(7)).map(Number.prototype.valueOf,0),
-				total: 0
+				a[aMax] = {
+					days: Array.apply(null, Array(7)).map(Number.prototype.valueOf,0),
+					total: 0
+				}
+				timestamps.push(parseInt(aMax,10));
 			}
+
+
+			while(timestamps.length < 52){
+				aMin -= 604800;
+				a[aMin] = {
+					days: Array.apply(null, Array(7)).map(Number.prototype.valueOf,0),
+					total: 0	
+				};
+				timestamps.push(parseInt(aMin,10));
+			}		
 		}
 
-		weeksRecorded = Object.keys(a).length;
+		//trim weekly commit data that is older than one year
+		if(timestamps.length > 52){
+			//sort weekending timestamps (oldest to newest)
+			timestamps.sort(function(a,b){
+				return a-b;
+			});
 
-		while(weeksRecorded < 52){
-			aMin -= 604800;
-			a[aMin] = {
-				days: Array.apply(null, Array(7)).map(Number.prototype.valueOf,0),
-				total: 0	
-			};
-
-			weeksRecorded++;
+			for(var i=0;i<(timestamps.length-52);i++){
+				var key = ""+timestamps[i];
+				delete a[key];
+			}
 		}
 
 		return a;
