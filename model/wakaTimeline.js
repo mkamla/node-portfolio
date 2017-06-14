@@ -40,10 +40,6 @@ var get = function(callback){
 		end = formatDate(timestamp - (offset*60000)),
 		start = formatDate((timestamp - (offset*60000))-86400000*6);
 
-	console.log('DST: '+date.dst());
-	console.log('Server Timezone offset: '+date.getTimezoneOffset());
-	console.log('Start: '+start+', End: '+end);
-
 	var requestOptions = {
 		hostname: 'wakatime.com',
 		path: '/api/v1/users/aca47a0f-4715-4c63-b7b2-0e1a52a8c3a2/summaries?start='+start+'&end='+end,

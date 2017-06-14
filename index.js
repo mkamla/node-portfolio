@@ -29,6 +29,7 @@ app.disable('x-powered-by');
 app.set('port',process.env.PORT || 8080);
 
 app.use(compression());
+
 app.use(function(req,rsp,next){
 	if(app.get('env') === 'production'){
 		var env = require('dotenv').config();
@@ -47,8 +48,17 @@ app.use('/',breadcrumbs.setHome({
 	url: '/'
 }));
 
-//routes
+//resource handling
+app.use(express.static(__dirname+'/public'));
 
+app.use(function(req,rsp,next){
+	if(req.headers.purpose !== 'prefetch'){
+		console.log('REQUEST::: '+new Date()+': '+req.url);		
+	}
+	next();
+});
+
+//routes
 app.get('/',function(req,rsp){
 	var wakaTimeline = require('./model/wakaTimeline.js');
 
@@ -82,9 +92,7 @@ app.get('/log',function(req,rsp){
 	req.breadcrumbs('Log','/log');
 
 	posts.scan('log',function(data){
-		console.log('getting post tables...');
-
-		//fetch the first 5 log entries
+		//fetch the first 3 log entries
 		var prefetch = [];
 
 		for(var i in data.Items){
@@ -122,7 +130,6 @@ app.get('/log/type/:tag',function(req,rsp){
 	req.breadcrumbs(req.params.tag,'/log/type/'+req.params.tag);
 
 	posts.findTags('log',queryObj,function(data){
-		console.log('getting post tables...');
 
 		rsp.render('log',{
 			page: {
@@ -155,7 +162,6 @@ app.get('/log/:url',function(req,rsp){
 	// req.breadcrumbs(req.params.url,'/log/'+req.params.url);
 
 	posts.find('log',queryObj,function(data){
-		console.log('getting post tables...');
 
 		req.breadcrumbs(data.Items[0].title,'/log/'+req.params.url);
 
@@ -236,9 +242,6 @@ app.post('/api/contact',function(req,rsp){
 		rsp.json(emailResponse);
 	}
 });
-
-//resource handling
-app.use(express.static(__dirname+'/public'));
 
 //error handling
 //404

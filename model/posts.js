@@ -126,8 +126,8 @@ var find = function(tableName,queryObj,callback){
 		region: 'us-west-2'
 	});
 
-	console.log('ExpressionAttributeNames: '+attr);
-	console.log('ExpressionAttributeValues: '+val);
+	// console.log('ExpressionAttributeNames: '+attr);
+	// console.log('ExpressionAttributeValues: '+val);
 
 	var params = {
 		TableName: tableName,
