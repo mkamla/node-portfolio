@@ -62,7 +62,7 @@ header h1, header h2 {
   margin: 4px 0;
   padding: 0;
   color: #8be9fd;
-  font-family: "Flama Light", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: 300;
   text-align: center;
@@ -128,7 +128,7 @@ nav ul li a {
   padding: 12px 16px;
   border-left: solid 4px transparent;
   color: #6156a1;
-  font-family: "Flama Light", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 18px;
   font-weight: 300;
   line-height: 1;
@@ -220,7 +220,7 @@ div.mod > .title {
   margin: 0 0 12px 0;
   padding: 12px;
   border-bottom: solid 1px #171426;
-  font-family: "Flama Light", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
   text-transform: uppercase;
   color: rgba(139, 233, 253, 0.8);
@@ -284,7 +284,7 @@ main.content ul.breadcrumb li a {
   border-bottom: solid 1px;
   color: #8be9fd;
   font-size: 1.5rem;
-  font-family: "Flama Light", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
   text-transform: uppercase;
   line-height: 1;
@@ -738,7 +738,7 @@ ul.log-entries > li:hover a h2, ul.log-entries > li:hover a p, ul.log-entries > 
 ul.log-entries > li a h2 {
   padding: 12px 12px 6px 12px;
   margin: 0;
-  font-family: "Flama Light", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
 }
 
@@ -763,7 +763,7 @@ ul.tags > li a {
   padding: 12px 16px 9px 16px;
   border-bottom: solid 3px transparent;
   color: #8be9fd;
-  font-family: "Flama Light", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
   font-weight: 300;
   text-transform: uppercase;
@@ -824,7 +824,7 @@ article section h1, article section h2, article section h3, article section h4 {
 
 article section h1 {
   color: #bbdfe6;
-  font-family: "Flama Light", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 2.4em;
   font-weight: 300;
 }
@@ -938,7 +938,7 @@ form.contact-form div.message {
   margin: 0 auto;
   padding: 16px;
   color: #8be9fd;
-  font-family: "Flama Light", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
   font-size: 24px;
   text-align: center;
@@ -1005,14 +1005,6 @@ form.contact-form.pending input[type="submit"] {
   -o-transform: translateY(-200%);
   -ms-transform: translateY(-200%);
   transform: translateY(-200%);
-}
-
-@font-face {
-  font-family: "Flama Light";
-  src: url("../fonts/Flama-Light.eot");
-  src: url("../fonts/Flama-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/Flama-Light.woff") format("woff"), url("../fonts/Flama-Light.svg") format("svg");
-  font-weight: light;
-  font-style: normal;
 }
 
 /*# sourceMappingURL=main.css.map */
