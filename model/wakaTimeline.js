@@ -32,6 +32,16 @@ var formatDate = function(timestamp){
 	return year+'-'+month+'-'+date;
 };
 
+var removeLocalData = function(data){
+	for(var i in data.data){
+		delete data.data[i].projects;
+
+		data.data[i].entities.forEach(function(val,index,array){
+			delete data.data[i].entities[index].name;
+		});
+	}
+};
+
 var get = function(callback){
 	var date = new Date(),
 		cstOffset = (date.dst())?300:360,
@@ -57,11 +67,12 @@ var get = function(callback){
 		});
 
 		rsp.on('end',function(){
+			var rspData = JSON.parse(data);
+			removeLocalData(rspData);
 			if(callback && typeof callback === 'function'){
-				// console.log(JSON.parse(data));
-				callback(JSON.parse(data));
+				callback(rspData);
 			} else {
-				return JSON.parse(data);
+				return rspData;
 			}
 		});
 	});	
