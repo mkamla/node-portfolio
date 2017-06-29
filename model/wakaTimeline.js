@@ -67,7 +67,12 @@ var get = function(callback){
 		});
 
 		rsp.on('end',function(){
-			var rspData = JSON.parse(data);
+			try {
+				var rspData = JSON.parse(data);
+			} catch(e){
+				var rspData = {};
+			}
+			
 			removeLocalData(rspData);
 			if(callback && typeof callback === 'function'){
 				callback(rspData);
