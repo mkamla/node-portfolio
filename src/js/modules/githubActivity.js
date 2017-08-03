@@ -1,13 +1,7 @@
 (function(w,$){
-
 	var model = {},
 		view = {},
 		controller = {};
-
-	model.range = {
-		l: 0,
-		h: 0,
-	};
 
 	view.dayNode = function(commitQt){
 		return '<span class="day" data-commits="'+commitQt+'"></span>';
@@ -46,10 +40,6 @@
 				
 				var commitQt = data[weekTimestamp]['days'][day];
 
-				if(model.range.h < commitQt){
-					model.range.h = commitQt;
-				}
-
 				weekElement.append(view.dayNode(commitQt));
 			}
 		}
@@ -59,7 +49,7 @@
 	controller.mergeGitData = function(a,b){
 		var timestamps = [],//start collecting timestamps (keys)
 			d = Math.floor(new Date().getTime()/1000),
-			aMax,aMin,weeksRecorded;
+			aMax,aMin;
 
 		var maxOfArray = function(array){
 			return Math.max.apply(null,array);
@@ -73,7 +63,7 @@
 		for(var x in b){
 			if(a.hasOwnProperty(x)){
 				a[x].total += b[x].total;
-				// if(a[x])
+
 				for(var day in a[x].days){
 					a[x].days[day] += b[x].days[day];
 				}
@@ -93,27 +83,25 @@
 		aMax = maxOfArray(timestamps);
 		aMin = minOfArray(timestamps);
 
-		if(timestamps.length < 52){
-			while(aMax <= d){
-				aMax += 604800;//(7*86400) = week
-
-				a[aMax] = {
-					days: Array.apply(null, Array(7)).map(Number.prototype.valueOf,0),
-					total: 0
-				}
-				timestamps.push(parseInt(aMax,10));
+		while(aMax <= d){
+			aMax += 604800;//(7*86400) = week
+			console.log('add week');
+			a[aMax] = {
+				days: Array.apply(null, Array(7)).map(Number.prototype.valueOf,0),
+				total: 0
 			}
-
-
-			while(timestamps.length < 52){
-				aMin -= 604800;
-				a[aMin] = {
-					days: Array.apply(null, Array(7)).map(Number.prototype.valueOf,0),
-					total: 0	
-				};
-				timestamps.push(parseInt(aMin,10));
-			}		
+			timestamps.push(parseInt(aMax,10));
 		}
+
+
+		while(timestamps.length < 52){
+			aMin -= 604800;
+			a[aMin] = {
+				days: Array.apply(null, Array(7)).map(Number.prototype.valueOf,0),
+				total: 0	
+			};
+			timestamps.push(parseInt(aMin,10));
+		}		
 
 		//trim weekly commit data that is older than one year
 		if(timestamps.length > 52){
@@ -136,7 +124,7 @@
 		model.gitlab = w.gitlab;
 
 		var mergedData = controller.mergeGitData(model.github,model.gitlab);
-
+		
 		controller.createActivityModule($('#git-activity'),mergedData);
 	};
 
