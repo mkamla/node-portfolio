@@ -85,7 +85,7 @@
 
 		while(aMax <= d){
 			aMax += 604800;//(7*86400) = week
-			console.log('add week');
+
 			a[aMax] = {
 				days: Array.apply(null, Array(7)).map(Number.prototype.valueOf,0),
 				total: 0
