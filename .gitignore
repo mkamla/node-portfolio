@@ -5,6 +5,7 @@
 .git
 src/components
 public/fonts/**/*
+scripts/**/*
 
 # MacOS
 .DS_Store
