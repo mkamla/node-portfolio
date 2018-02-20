@@ -36,9 +36,14 @@ var removeLocalData = function(data){
 	for(var i in data.data){
 		delete data.data[i].projects;
 
-		data.data[i].entities.forEach(function(val,index,array){
-			delete data.data[i].entities[index].name;
-		});
+		try {
+			data.data[i].entities.forEach(function(val,index,array){
+				delete data.data[i].entities[index].name;
+			});	
+		} catch (e){
+			
+		}
+		
 	}
 };
 
